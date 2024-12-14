@@ -1,10 +1,12 @@
 package dev.tiktaalik.actionfigures.model
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Parcelize
+@Entity(tableName = "figure_table")
 data class Figure(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val price: Int,
@@ -15,4 +17,4 @@ data class Figure(
     val description: String,
     val availability: Boolean,
     val colours: ArrayList<String>,
-) : Parcelable
+) : Serializable

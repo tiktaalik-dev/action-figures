@@ -1,10 +1,14 @@
 package dev.tiktaalik.actionfigures.data.local
 
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import dev.tiktaalik.actionfigures.model.Figure
 
-@androidx.room.Database(entities = [com.example.crypto.data.local.AssetEntity::class], version = 1, exportSchema = false)
-abstract class LocalDB : androidx.room.RoomDatabase() {
-    abstract fun assetDao(): com.example.crypto.data.local.AssetDao
+@Database(entities = [Figure::class], version = 1, exportSchema = false)
+abstract class LocalDB : RoomDatabase() {
+    abstract fun figureDao(): FigureDao
 
     companion object{
         @Volatile
@@ -14,7 +18,11 @@ abstract class LocalDB : androidx.room.RoomDatabase() {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
-                val instance = androidx.room.RoomDatabase.Builder.build()
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    LocalDB::class.java,
+                    "local_db"
+                ).build()
                 INSTANCE = instance
                 // return instance
                 instance

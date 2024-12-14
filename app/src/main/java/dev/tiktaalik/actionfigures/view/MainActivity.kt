@@ -1,4 +1,4 @@
-package dev.tiktaalik.actionfigures
+package dev.tiktaalik.actionfigures.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 //        enableEdgeToEdge()
 
         // Implementar Navegación. Primero capturar el controlador de navegación
-        val navController = findNavController(R.id.nav_host_fragment) // Replace with your NavHostFragment ID
-        navController.navigate(R.id.action_FirstFragment_to_SecondFragment)
+        val navController = findNavController(mainView.navHostFragment) // Replace with your NavHostFragment ID
+        navController.navigate(mainView.action_FirstFragment_to_SecondFragment)
 
         ViewCompat.setOnApplyWindowInsetsListener(mainView.mainActivity) { v, insets ->
         val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
